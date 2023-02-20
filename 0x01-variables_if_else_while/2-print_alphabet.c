@@ -14,6 +14,5 @@ int main(void)
 	{
 		putchar(alphabetStr[i]);
 	}
-/*	putchar('\n');*/
 	return (0);
 }
