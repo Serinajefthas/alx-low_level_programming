@@ -12,14 +12,9 @@ void puts2(char *str)
 
 	int len = strlen(str);
 
-	for (i = 0; i < len - 1; i++)
+	for (i = 0; i < len - 1; i += 2)
 	{
-		if (str[i] % 2 == 0)
-			printf("%d", str[i]);
-		else if(i % 2 != 0)
-			continue;
-		else
-		{
-		}
+		_putchar(str[i]);
 	}
-}	
+	_putchar('\n');
+}
