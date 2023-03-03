@@ -5,19 +5,27 @@
  * _strncat - concatenate 2 strings
  * uses at most n bytes(characters) from src
  * src does not need be null terminated if contains n+ bytes
+ * @dest: concatenated string
+ * @src: string to add to dest string
+ * @n: number bytes (ie characters) from src string
  * Return: pointer to resulting str dest
  */
 char *_strncat(char *dest, char *src, int n)
 {
-	int i, len;
+	int i, j;
 
-	 = strlen(src);
-	i = strlen(dest);
-
-	for (i = strlen(dest); i < n; i++)
+	i = 0;
+	while (dest[i] != '\0')
 	{
-		*dest = *src;
-		dest++;
+		i++;
 	}
+	j = 0;
+	while (j < n && src[j] != '\0')
+	{
+		dest[i] = src[j];
+		i++;
+		j++;
+	}
+	dest[i] = '\0';
 	return (dest);
 }
