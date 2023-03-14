@@ -9,17 +9,19 @@
  */
 char *_strdup(char *str)
 {
-	long unsigned int i;
-	
-	char *arr = malloc(sizeof(int) * strlen(str));
-	
+	int i;
+
+	int len = strlen(str);
+
+	char *arr = malloc(sizeof(int) * len);
+
+	if (str == NULL)
+		return ("failed to allocate memory");
+
 	if (arr == NULL)
 		return (NULL);
 
-	if (str == NULL)
-		return (NULL);
-
-	for (i = 0; i < strlen(str); i++)
+	for (i = 0; i < len; i++)
 		arr[i] = str[i];
 
 	return (arr);
