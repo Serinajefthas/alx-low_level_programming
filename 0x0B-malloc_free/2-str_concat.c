@@ -27,12 +27,12 @@ char *str_concat(char *s1, char *s2)
 	if (s1 == NULL)
 	{
 		s1 = "";
-		strlen(s1) = 1;
+		s1_len = strlen(s1);
 	}
 	if (s2 == NULL)
 	{
 		s2 = "";
-		strlen(s2) = 1;
+		s2_len = strlen(s2);
 	}
 
 	for (i = 0; i < s1_len; i++)
