@@ -5,11 +5,12 @@
 /**
  * malloc_checked - allocates mem using malloc
  * @b: amt of memory
- * Return: none
+ * Return: ptr to allocated memory (same
+ * as method return type, ie void)
  */
 void *malloc_checked(unsigned int b)
 {
-	void *n = malloc(sizeof(int) * b);
+	void *n = malloc(b);
 
 	if (n == NULL)
 	{
