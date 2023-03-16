@@ -24,12 +24,12 @@ char *string_nconcat(char *s1, char *s2, unsigned int n)
 	if (s1 == NULL)
 	{
 		s1 = "";
-		s1_len = strlen(s1);
+		s1_len = 0;
 	}
 	if (s2 == NULL)
 	{
 		s2 = "";
-		s2_len = strlen(s2);
+		s2_len = 0;
 	}
 	len = s1_len + n + 1;
 	s = malloc(sizeof(int) * len);
