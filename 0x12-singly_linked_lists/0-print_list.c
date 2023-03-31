@@ -8,8 +8,7 @@
  */
 size_t print_list(const list_t *h)
 {
-	int i, num_nodes = 0;
-
+	int num_nodes = 0;
 	const list_t *current = NULL;
 
 	current = h;/*creates a 'node',just in this case called list_t*/
