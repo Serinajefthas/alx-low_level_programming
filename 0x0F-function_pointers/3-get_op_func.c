@@ -1,7 +1,7 @@
-#include "function_pointers.h"
+#include "3-calc.h"
 #include <stdlib.h>
 #include <stdio.h>
-
+#include <string.h>
 /**
  * get_op_func - gets the operation function
  * @s: string passed in
@@ -19,12 +19,12 @@ int (*get_op_func(char *s))(int, int)
 	{"%", op_mod},
 	{NULL, NULL}
 	};
-	
-	while(op_s[i].op)
+
+	while (ops[i].op != NULL)
 	{
-		if (*(op_s[i].op) == *s)
-			return (op_s[i].f);
+		if (strcmp(s, ops[i].op) == 0)
+			break;
 		i++;
 	}
-	return (NULL);
+	return (ops[i].f);
 }
