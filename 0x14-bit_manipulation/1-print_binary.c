@@ -12,7 +12,7 @@ void print_binary(unsigned long int n)
 
 	for (i = 63; i >= 0; i--)
 	{
-		if (n & (1 << i))
+		if ((n >> i) & 1)
 		{
 			printf("1");
 			leading_zero = 0;
