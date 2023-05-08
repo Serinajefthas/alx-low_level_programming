@@ -13,39 +13,35 @@ int main(int argc, char *argv[])
 
 	if (argc != 3)
 		dprintf(STDERR_FILENO, "%s\n", "Usage: cp file_from file_to"), exit(97);
-
-	src_fd = open(argv[1], O_RDONLY);
-	if (src_fd == -1 || argv[1] == NULL)
-	{
-		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", argv[1]);
-		exit(98);
-	}
 	buffer = malloc(sizeof(char) * 1024);
 	if (!buffer)
-		return (-1);
-
-	dest_fd = open(argv[2], O_WRONLY | O_CREAT | O_TRUNC | O_APPEND, 0664);
-	if (dest_fd == -1 || argv[2] == NULL)
-		dprintf(STDERR_FILENO, "Error: Can't write to %s\n", argv[1]), exit(99);
-
+	{
+		dprintf(STDERR_FILENO, "Error: Can't write to %s\n", argv[1]);
+		exit(99);
+	}
+	src_fd = open(argv[1], O_RDONLY);
 	r = read(src_fd, buffer, 1024);
-	if (r == -1)
+	dest_fd = open(argv[2], O_CREAT | O_WRONLY | O_TRUNC, 0664);
+	if (src_fd == -1 || r == -1)
 	{
 		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", argv[1]);
+		free(buffer);
 		exit(98);
 	}
 	w = write(dest_fd, buffer, 1024);
-	if (w == -1)
-		dprintf(STDERR_FILENO, "Error: Can't write to %s\n", argv[2]), exit(99);
+	if (dest_fd == -1 || w == -1)
+		dprintf(STDERR_FILENO, "Error: Can't write to %s\n", argv[1]), exit(99);
+
+	r = read(src_fd, buffer, 1024);
+	dest_fd = open(argv[2], O_WRONLY | O_APPEND);
 
 	c = close(src_fd);
 	if (c == -1)
-		dprintf(STDERR_FILENO, "Error: Can't close fd %s\n", argv[1]), exit(100);
+		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", src_fd), exit(100);
 	c = close(dest_fd);
-	if (close(dest_fd == -1))
-		dprintf(STDERR_FILENO, "Error: Can't close fd %s\n", argv[2]), exit(100);
+	if (c == -1)
+		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", dest_fd), exit(100);
 
 	free(buffer);
 	return (0);
 }
-
