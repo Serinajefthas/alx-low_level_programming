@@ -1,1 +1,1 @@
-C first hello world task
+Projects in C
