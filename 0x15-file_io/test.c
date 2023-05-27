@@ -13,13 +13,13 @@ void print_elf_header(char *filename) {
 
     if ((fd = open(filename, O_RDONLY, 0)) < 0) {
         perror("open");
-        return;
+	return;
     }
 
     if (read(fd, &elf_header, sizeof(Elf64_Ehdr)) != sizeof(Elf64_Ehdr)) {
         perror("read");
         close(fd);
-        return;
+	return;
     }
 
     if (elf_header.e_ident[EI_MAG0] != ELFMAG0 ||
@@ -28,7 +28,7 @@ void print_elf_header(char *filename) {
         elf_header.e_ident[EI_MAG3] != ELFMAG3) {
         fprintf(stderr, "Not a valid ELF file: %s\n", filename);
         close(fd);
-        return;
+	return;
     }
 
     printf("ELF Header:\n");
@@ -47,8 +47,10 @@ void print_elf_header(char *filename) {
     close(fd);
     return;
 }
+
 int main(int argc  __attribute__((__unused__)), char *argv[])
 {
     print_elf_header(argv[1]);
     return 0;
 }
+
