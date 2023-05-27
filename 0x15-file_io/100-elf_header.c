@@ -11,17 +11,8 @@ void print_elf_header(char *filename) {
     int fd, i;
     Elf64_Ehdr elf_header;
 
-    if ((fd = open(filename, O_RDONLY, 0)) < 0) {
-        perror("open");
-        return;
-    }
-
-    if (read(fd, &elf_header, sizeof(Elf64_Ehdr)) != sizeof(Elf64_Ehdr)) {
-        perror("read");
-        close(fd);
-        return;
-    }
-
+    fd = open(filename, O_RDONLY, 0);
+    read(fd, &elf_header, sizeof(Elf64_Ehdr));
     if (elf_header.e_ident[EI_MAG0] != ELFMAG0 ||
         elf_header.e_ident[EI_MAG1] != ELFMAG1 ||
         elf_header.e_ident[EI_MAG2] != ELFMAG2 ||
@@ -30,7 +21,6 @@ void print_elf_header(char *filename) {
         close(fd);
         return;
     }
-
     printf("ELF Header:\n");
     printf("  Magic: ");
     for (i = 0; i < EI_NIDENT; i++) {
