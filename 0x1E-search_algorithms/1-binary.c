@@ -20,21 +20,20 @@ int binary_search(int *array, size_t size, int value)
 {
         size_t mid, l, r, i;
 
-        /* r, l, mid are all array indices, not array values*/
+        if (array == NULL)
+		return (-1);
+	/* r, l, mid are all array indices, not array values*/
         l = 0;
         r = size - 1;
         while (l <= r)
         {
                 mid = l + (r - l) / 2;
                 printf("Searching in array: ");
-                for (i = 0; i <= r; i++)
-                {
-                        if (i == r)
-                                printf("%d\n", array[i]);
-                        else
-                                printf("%d, ", array[i]);
-                }
-                if (value == array[mid])
+                for (i = l; i < r; i++)
+			printf("%d, ", array[i]);
+		printf("%d\n", array[i]);
+
+		if (value == array[mid])
                         return (mid);
                 else if (value > array[mid])
                         l = mid + 1;
